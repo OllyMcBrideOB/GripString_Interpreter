@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45ffa8a6-7498-4150-a5b3-0c50f2d40245" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/GripString.py" afterPath="$PROJECT_DIR$/GripString.py" />
+      <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -11,26 +13,62 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="GripString.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/GripString.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="500">
+                    <caret line="250" column="0" lean-forward="true" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
+                    <folding>
+                      <element signature="n#!!doc" expanded="false" />
+                      <element signature="e#1554#1655#0" expanded="false" />
+                      <element signature="e#1581#1655#0" expanded="false" />
+                      <element signature="e#1729#1926#0" expanded="false" />
+                      <element signature="e#1757#1926#0" expanded="false" />
+                      <element signature="e#1993#2140#0" expanded="false" />
+                      <element signature="e#2021#2140#0" expanded="false" />
+                      <element signature="e#2285#2420#0" expanded="false" />
+                      <element signature="e#2426#2456#0" expanded="false" />
+                      <element signature="e#2705#2741#0" expanded="false" />
+                      <element signature="e#2836#3521#0" expanded="false" />
+                      <element signature="e#3612#4406#0" expanded="false" />
+                      <element signature="e#4479#4558#0" expanded="false" />
+                      <element signature="e#4645#5657#0" expanded="false" />
+                      <element signature="e#5747#7057#0" expanded="false" />
+                      <element signature="e#7217#7245#0" expanded="false" />
+                      <element signature="e#10374#12166#0" expanded="false" />
+                      <element signature="e#10472#10537#0" expanded="false" />
+                      <element signature="e#10583#10654#0" expanded="false" />
+                      <element signature="e#11268#11324#0" expanded="false" />
+                      <element signature="e#12308#12633#0" expanded="false" />
+                      <element signature="e#12308#12380#0" expanded="false" />
+                      <element signature="e#12778#12957#0" expanded="false" />
+                      <marker date="1520865098849" expanded="false" signature="2192:2228" ph="..." />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="32" column="57" lean-forward="true" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+            <state relative-caret-position="204">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#484#534#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GripString.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GripString.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="681">
-              <caret line="337" column="0" lean-forward="true" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -38,14 +76,50 @@
       <file leaf-file-name="GripPositions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GripPositions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="96" column="22" lean-forward="true" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+            <state relative-caret-position="970">
+              <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="GripString.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GripString.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
+                <element signature="e#1554#1655#0" expanded="false" />
+                <element signature="e#1581#1655#0" expanded="false" />
+                <element signature="e#1729#1926#0" expanded="false" />
+                <element signature="e#1757#1926#0" expanded="false" />
+                <element signature="e#1993#2140#0" expanded="false" />
+                <element signature="e#2021#2140#0" expanded="false" />
+                <element signature="e#2426#2456#0" expanded="false" />
+                <element signature="e#2705#2741#0" expanded="false" />
+                <element signature="e#7217#7245#0" expanded="false" />
+                <element signature="e#8043#8227#0" expanded="false" />
+                <element signature="e#8389#8548#0" expanded="false" />
+                <element signature="e#10472#10537#0" expanded="false" />
+                <element signature="e#10583#10654#0" expanded="false" />
+                <element signature="e#11268#11324#0" expanded="false" />
+                <element signature="e#12308#12633#0" expanded="false" />
+                <element signature="e#12308#12380#0" expanded="false" />
+                <element signature="e#12778#12957#0" expanded="false" />
+                <marker date="1520865098849" expanded="true" signature="7160:10215" ph="..." />
+                <marker date="1520865098849" expanded="true" signature="9968:10215" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Grip String</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -53,9 +127,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/GripPositions.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/GripString.py" />
-        <option value="$PROJECT_DIR$/GripPositions.py" />
       </list>
     </option>
   </component>
@@ -81,7 +155,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -94,6 +167,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -178,23 +252,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="3832" y="461" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17152777" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896462" sideWeight="0.5541667" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896462" sideWeight="0.44583333" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896462" sideWeight="0.5541667" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896462" sideWeight="0.44583333" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -202,15 +277,64 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#484#534#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GripString.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5729">
+          <caret line="337" column="0" lean-forward="true" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1554#1655#0" expanded="false" />
+            <element signature="e#1581#1655#0" expanded="false" />
+            <element signature="e#1729#1926#0" expanded="false" />
+            <element signature="e#1757#1926#0" expanded="false" />
+            <element signature="e#1993#2140#0" expanded="false" />
+            <element signature="e#2021#2140#0" expanded="false" />
+            <element signature="e#2426#2456#0" expanded="false" />
+            <element signature="e#2705#2741#0" expanded="false" />
+            <element signature="e#7217#7245#0" expanded="false" />
+            <element signature="e#8043#8227#0" expanded="false" />
+            <element signature="e#8389#8548#0" expanded="false" />
+            <element signature="e#10472#10537#0" expanded="false" />
+            <element signature="e#10583#10654#0" expanded="false" />
+            <element signature="e#11268#11324#0" expanded="false" />
+            <element signature="e#12308#12633#0" expanded="false" />
+            <element signature="e#12308#12380#0" expanded="false" />
+            <element signature="e#12778#12957#0" expanded="false" />
+            <marker date="1520865098849" expanded="true" signature="7160:10215" ph="..." />
+            <marker date="1520865098849" expanded="true" signature="9968:10215" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GripPositions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="96" column="22" lean-forward="true" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/Desktop/GripPositions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -218,7 +342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -226,32 +349,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GripPositions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="970">
+          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GripString.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="337" column="0" lean-forward="true" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GripPositions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="96" column="22" lean-forward="true" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="357">
+          <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1554#1655#0" expanded="false" />
+            <element signature="e#1581#1655#0" expanded="false" />
+            <element signature="e#1729#1926#0" expanded="false" />
+            <element signature="e#1757#1926#0" expanded="false" />
+            <element signature="e#1993#2140#0" expanded="false" />
+            <element signature="e#2021#2140#0" expanded="false" />
+            <element signature="e#2426#2456#0" expanded="false" />
+            <element signature="e#2705#2741#0" expanded="false" />
+            <element signature="e#7217#7245#0" expanded="false" />
+            <element signature="e#8043#8227#0" expanded="false" />
+            <element signature="e#8389#8548#0" expanded="false" />
+            <element signature="e#10472#10537#0" expanded="false" />
+            <element signature="e#10583#10654#0" expanded="false" />
+            <element signature="e#11268#11324#0" expanded="false" />
+            <element signature="e#12308#12633#0" expanded="false" />
+            <element signature="e#12308#12380#0" expanded="false" />
+            <element signature="e#12778#12957#0" expanded="false" />
+            <marker date="1520865098849" expanded="true" signature="7160:10215" ph="..." />
+            <marker date="1520865098849" expanded="true" signature="9968:10215" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="32" column="57" lean-forward="true" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+        <state relative-caret-position="204">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#484#534#0" expanded="false" />
           </folding>
         </state>
       </provider>

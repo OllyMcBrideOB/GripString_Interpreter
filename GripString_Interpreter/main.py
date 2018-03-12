@@ -7,22 +7,29 @@ from GripPositions import *
 grip = GRIP()
 
 
-# # select the number of fingers and keyframes in the grip
-# # grip.setNumFingers(4)
-# # grip.setNumKeyframes(8)
-#
+gripName = "Tripod FCL"
+
+
+
+
+
 # select a predefined grip
-pos = predefinedPos("fist")
+pos = predefinedPos(gripName)
 
 # save the positions in the grip
 grip.setFingerPositions(pos)
+grip.setName("abcdefghijklmnopqrstuvwxyz")
 
 # print the grip details and string
 print(grip)
 
-print("Grip String  (len: " + str(len(grip.getGripStr())) + ")\n" + grip.getGripStr())
+print("Grip String  (len: " + str(len(grip.getGripStr())) + ")\t" + grip.getGripStr())
 
-grip.printGripDetails_fromString(grip.getGripStr())
+grip.setUsingString(grip.getGripStr())
+
+print(grip)
+
+
 
 
 
