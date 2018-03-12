@@ -36,7 +36,7 @@ for x in range(0, len(defaultGripNames)):
     pos = predefinedPos(defaultGripNames[x])
     grip.setFingerPositions(pos)
     grip.setName(defaultGripNames[x])
-    print(grip.getGripStr() + "\t" + grip.getName())
+    print(grip.getGripStr() + "\t\t" + grip.getName())
 
 
 

@@ -5,20 +5,20 @@ from GripString import *    # F0, F1 etc
 
 if NUM_FINGERS == 3:
     defaultGripNames = \
-        ["fist",
-         "hook",
-         "tripod fop",
-         "tripod fcl",
+        ["Fist",
+         "Hook",
+         "Tripod FOP",
+         "Tripod FCL",
          # "zeros"
          ]
 else:
     defaultGripNames = \
-        ["fist",
-         "hook",
-         "tripod fop",
-         "tripod fcl",
-         "pinch fop",
-         "pinch fcl",
+        ["Fist",
+         "Hook",
+         "Tripod FOP",
+         "Tripod FCL",
+         "Pinch FOP",
+         "Pinch FCL",
          # "zeros"
          ]
 
@@ -33,7 +33,7 @@ def predefinedPos(gripName = ""):
     gripName = gripName.strip()     # remove whitespace
 
     if NUM_FINGERS == 3:
-        if gripName == 'fist':
+        if gripName == "fist":
             pos[F0] = [[0, 10],     [100, 10]]
             pos[F1] = [[0, 35],     [35, 35],   [100, 100]]
             pos[F2] = [[0, 0],      [100, 100]]

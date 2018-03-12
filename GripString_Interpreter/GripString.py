@@ -4,8 +4,14 @@
 # VERSION
 GRIP_STRING_VER = 0
 
+# LIMITS
+GRIP_NAME_MAX_LEN  = 16      # maximum length of the grip name
+
+# GRIP VALUES
+GRIP_EMPTY_KFRAME_VAL = 255
+
 # FINGER LABELS
-NUM_FINGERS = 3
+NUM_FINGERS = 4
 F0 = 0
 F1 = 1
 F2 = 2
@@ -22,9 +28,6 @@ KF5 = 5
 KF6 = 6
 KF7 = 7
 
-# GRIP VALUES
-GRIP_EMPTY_KFRAME_VAL = 255
-
 # PRINTABLE CHAR BLOCKS
 PRINTABLE_CHAR_B1_STRT = 33     # ! start of block 1 of printable chars
 PRINTABLE_CHAR_B1_END  = 126    # ~ end of block 1 of printable chars
@@ -32,7 +35,7 @@ PRINTABLE_CHAR_B2_STRT = 161    # Â¡ start of block 2 of printable chars
 PRINTABLE_CHAR_B2_END  = 255    # Ã¿ end of block 2 of printable chars
 
 # GRIP STRING CONTROL CHARS
-GRIP_GR_NAME_CHAR = chr(PRINTABLE_CHAR_B2_END - 3)          # set the grip name char to be the third to last printable char
+GRIP_GR_NAME_CHAR = chr(PRINTABLE_CHAR_B2_END - 3)          # set the grip name char to be the fourth to last printable char
 GRIP_GR_PARAMS_CHAR = chr(PRINTABLE_CHAR_B2_END - 2)        # set the grip params char to be the third to last printable char
 GRIP_END_CHAR = chr(PRINTABLE_CHAR_B2_END - 1)    # set the end char to be the second to last printable char
 GRIP_EMPTY_CHAR = chr(PRINTABLE_CHAR_B2_END)	  # set the empty char to be the to last printable char
@@ -41,12 +44,9 @@ GRIP_EMPTY_CHAR = chr(PRINTABLE_CHAR_B2_END)	  # set the empty char to be the to
 # CHAR LOC WITHIN STRING
 GRIP_VER_LOC       = 0		# location of version char
 GRIP_N_FIN_LOC     = 1		# location of number of fingers
-GRIP_N_KFRAMES_LOC = 2	    # location of number of keyframes
-GRIP_PARAMS_LOC    = 3		# location of gip parameters
+GRIP_PARAMS_LOC    = 2		# location of gip parameters
 GRIP_END_LOC = (GRIP_PARAMS_LOC + (NUM_FINGERS * (GRIP_N_KFRAMES * 2))) 	# location of end char
 
-# LIMITS
-GRIP_NAME_MAX_LEN  = 16      # maximum length of the grip name
 
 # individual keyframe is made up of gripCount and fingerPos
 class keyFrame_t:
@@ -66,9 +66,9 @@ class fKeyFrames_t:
 # each grip has NUM_FINGERS fingerFrames
 class gripParams_t:
     def __init__(self):
-        self.fFrames = [fKeyFrames_t()]
+        self.fFrame = [fKeyFrames_t()]
         for k in range(0, NUM_FINGERS):
-            self.fFrames.append(fKeyFrames_t())
+            self.fFrame.append(fKeyFrames_t())
 
 
 ## GRIP CLASS
@@ -91,7 +91,7 @@ class GRIP:
 
     # return the number of active keyframes
     def numKeyFrames(self, fNum):
-        return self._grip.fFrames[fNum].nKFs
+        return self._grip.fFrame[fNum].nKFs
 
     # convert a char to a grip string value
     def _decodeCharToVal(self, char=""):
@@ -152,18 +152,18 @@ class GRIP:
         print("")
 
         # calculate the maximum number of keyframes in the grip
-        maxNKFrames = 0
+        maxnKFs = 0
         for f in range(0, NUM_FINGERS):
-            maxNKFrames = max(self._grip.fFrames[f].nKFs, maxNKFrames)
+            maxnKFs = max(self._grip.fFrame[f].nKFs, maxnKFs)
 
         # display all grip key frames
-        for k in range(0, maxNKFrames):
+        for k in range(0, maxnKFs):
             print("Kf[" + str(k) + "]: ", end="")
             for f in range(0, NUM_FINGERS):
-                if self._grip.fFrames[f].keyFrame[k].gCnt == GRIP_EMPTY_KFRAME_VAL:
+                if self._grip.fFrame[f].keyFrame[k].gCnt == GRIP_EMPTY_KFRAME_VAL:
                     print("\t\t\t",end="")
                 else:
-                    print(str(self._grip.fFrames[f].keyFrame[k].gCnt) + "," + str(self._grip.fFrames[f].keyFrame[k].fPos) + " \t", end="")
+                    print(str(self._grip.fFrame[f].keyFrame[k].gCnt) + "," + str(self._grip.fFrame[f].keyFrame[k].fPos) + " \t", end="")
             print("")
 
     # return the current grip params as a grip string
@@ -177,11 +177,11 @@ class GRIP:
         # count through each finger
         for f in range(0, NUM_FINGERS):
             # add the number of keyframes to the grip string
-            gStr += self._decodeValToChar(self._grip.fFrames[f].nKFs)
+            gStr += self._decodeValToChar(self._grip.fFrame[f].nKFs)
             # convert all keyframes vals to chars. If they are empty, use empty keyframe char instead
-            for k in range(0, self._grip.fFrames[f].nKFs):
-                gStr += self._decodeValToChar(self._grip.fFrames[f].keyFrame[k].gCnt)       # decode grip count to char
-                gStr += self._decodeValToChar(self._grip.fFrames[f].keyFrame[k].fPos)       # decode finger pos to char
+            for k in range(0, self._grip.fFrame[f].nKFs):
+                gStr += self._decodeValToChar(self._grip.fFrame[f].keyFrame[k].gCnt)       # decode grip count to char
+                gStr += self._decodeValToChar(self._grip.fFrame[f].keyFrame[k].fPos)       # decode finger pos to char
         # add closing 'grip params' special char
         gStr += GRIP_GR_PARAMS_CHAR
 
@@ -279,15 +279,15 @@ class GRIP:
 
         # TODO if KF0, K! and KF3 are used, this breaks the count (as nKF == 2)
         # if writing to an empty keyframe, increment number of non-empty keyframes
-        if self._grip.fFrames[fNum].keyFrame[KFn].gCnt == GRIP_EMPTY_KFRAME_VAL:
-            self._grip.fFrames[fNum].nKFs += 1
+        if self._grip.fFrame[fNum].keyFrame[KFn].gCnt == GRIP_EMPTY_KFRAME_VAL:
+            self._grip.fFrame[fNum].nKFs += 1
 
         # if writing an empty val to a keyframe, decrement the number of non-empty keyframes
         if gripCount == GRIP_EMPTY_KFRAME_VAL:
-            self._grip.fFrames[fNum].nKFs -= 1
+            self._grip.fFrame[fNum].nKFs -= 1
 
-        self._grip.fFrames[fNum].keyFrame[KFn].gCnt = gripCount
-        self._grip.fFrames[fNum].keyFrame[KFn].fPos = fPos
+        self._grip.fFrame[fNum].keyFrame[KFn].gCnt = gripCount
+        self._grip.fFrame[fNum].keyFrame[KFn].fPos = fPos
 
         # ## TODO, this will break if the KF's are not K0 and K1
         # # if there are only 2 keyframes for this finger
