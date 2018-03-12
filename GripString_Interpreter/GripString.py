@@ -133,6 +133,11 @@ class GRIP:
     # set the name of the grip
     def setName(self, name=""):
         self._name = name[0:GRIP_NAME_MAX_LEN]      # limit the length of the grip name
+        self._name = self._name.strip()             # strip blank space
+
+    # return the grip name
+    def getName(self):
+        return self._name
 
     # print the details and position of the grip
     def printDetails(self):
@@ -182,9 +187,12 @@ class GRIP:
 
         # if the grip has a name
         if self._name:
+            self._name = self._name.replace(' ', '_')   # replace space char with an underscore char
+
             # add opening 'grip name' special char
             gStr += GRIP_GR_NAME_CHAR
             gStr += self._name[0:GRIP_NAME_MAX_LEN]     # do not encode name, but limit length
+
             # add closing 'grip name' special char
             gStr += GRIP_GR_NAME_CHAR
 
@@ -256,6 +264,7 @@ class GRIP:
             gripNamesEnd = gStr.find(GRIP_GR_NAME_CHAR, gripNamesStrt + 1)
             self._name = gStr[gripNamesStrt + 1: gripNamesEnd]                  # store name
             self._name = self._name[0:min(len(self._name), GRIP_NAME_MAX_LEN)]  # limit name length
+            self._name = self._name.replace('_', ' ')                           # replace underscore with a space char
 
     # set the values of a keyframe. Return false if not a valid keyframe
     def setKeyFrame(self, KFn, fNum, gripCount, fPos):

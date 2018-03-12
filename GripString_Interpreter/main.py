@@ -11,14 +11,12 @@ gripName = "Tripod FCL"
 
 
 
-
-
 # select a predefined grip
 pos = predefinedPos(gripName)
 
 # save the positions in the grip
 grip.setFingerPositions(pos)
-grip.setName("abcdefghijklmnopqrstuvwxyz")
+grip.setName(gripName)
 
 # print the grip details and string
 print(grip)
@@ -33,11 +31,12 @@ print(grip)
 
 
 
-# ## display grip strings for all predefined grips
-# for x in range(0, len(defaultGripNames)):
-#     pos = predefinedPos((defaultGripNames[x]))
-#     grip.setFingerPositions(pos)
-#     print(grip.getGripStr() + "\t" + defaultGripNames[x])
+# display grip strings for all predefined grips
+for x in range(0, len(defaultGripNames)):
+    pos = predefinedPos(defaultGripNames[x])
+    grip.setFingerPositions(pos)
+    grip.setName(defaultGripNames[x])
+    print(grip.getGripStr() + "\t" + grip.getName())
 
 
 
