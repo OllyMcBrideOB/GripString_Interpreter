@@ -1,5 +1,23 @@
 # GripString.py
 
+## Grip string format (Ver 0, 13/03/18)
+#
+#	V F gpc gripParams gpc gnc gripName gnc endc
+#
+#	V			- version of grip string
+#	F			- number of fingers
+#	gpc			- grip parameter control char
+#	gnc			- grip name control char
+#	endc		- end char (char 254)
+#	gripParams	- grip keyframes for each finger ({F0 nKFs, {gCnt, fPos}, {gCnt, fPos}}, {F1 nKFs, {gCnt, fPos} ...)
+#	gripName	- name of the grip (not encoded, limited to GRIP_NAME_MAX_LEN)
+#
+#	The grip values are encoded from uint8_t vals to ASCII (and exteneded ASCII) chars
+#	which have been tested to be printable over common serial terminals.
+#	The ASCII set is split into 2 blocks (33 - 126, 161 - 255) of printable chars, and
+#	are used to represent either a decimal value (33 = 0, 34 = 1 etc) or a control
+#	char (255 = empty value, 254 = endc etc).
+##
 
 # VERSION
 GRIP_STRING_VER = 0

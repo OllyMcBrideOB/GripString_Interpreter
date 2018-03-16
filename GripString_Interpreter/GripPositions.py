@@ -18,7 +18,7 @@ else:
          "Tripod FOP",
          "Tripod FCL",
          "Pinch FOP",
-         "Pinch FCL",
+         "Pinch FCL",   
          # "zeros"
          ]
 
