@@ -120,7 +120,7 @@ class GRIP:
         elif(char >= chr(PRINTABLE_CHAR_B1_STRT)) and (char <= chr(PRINTABLE_CHAR_B1_END)):
             return ord(char) - PRINTABLE_CHAR_B1_STRT
         elif (char >= chr(PRINTABLE_CHAR_B2_STRT)) and (char <= chr(PRINTABLE_CHAR_B2_END)):
-            return ord(char) - (PRINTABLE_CHAR_B2_STRT - PRINTABLE_CHAR_B1_END) - PRINTABLE_CHAR_B1_STRT
+            return ord(char) - ( ( PRINTABLE_CHAR_B2_STRT - PRINTABLE_CHAR_B1_END ) - 1) - PRINTABLE_CHAR_B1_STRT
 
         print("Char not valid for decoding to val")
         # if the char is not within any of the printable blocks, return the 0
@@ -128,19 +128,19 @@ class GRIP:
 
     # convert a value to a grip string char
     def _decodeValToChar(self, val):
-        val += PRINTABLE_CHAR_B1_STRT  # offset the value by the char offset of block 1
-
         # if the value is an GRIP_EMPTY_KFRAME_VAL
         if val == GRIP_EMPTY_KFRAME_VAL:
             return GRIP_EMPTY_CHAR
+
+        val += PRINTABLE_CHAR_B1_STRT  # offset the value by the char offset of block 1
 
         # if value is within the first block
         if (val >= PRINTABLE_CHAR_B1_STRT) and (val <= PRINTABLE_CHAR_B1_END):
             return chr(val)
 
-        val += (PRINTABLE_CHAR_B2_STRT - PRINTABLE_CHAR_B1_END)  # offset the value by the char offset of block 2
+        val += (PRINTABLE_CHAR_B2_STRT - PRINTABLE_CHAR_B1_END) - 1  # offset the value by gap size between blocks 1 and 2
 
-        # if value is within the first block
+        # if value is within the second block
         if (val >= PRINTABLE_CHAR_B2_STRT) and (val <= PRINTABLE_CHAR_B2_END):
             return chr(val)
 
