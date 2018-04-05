@@ -1,23 +1,24 @@
 # GripString.py
 
-## Grip string format (Ver 0, 13/03/18)
+
+# Grip string format (Ver 0, 13/03/18)
 #
-#	V F gpc gripParams gpc gnc gripName gnc endc
+# 	V F gpc gripParams gpc gnc gripName gnc endc
 #
-#	V			- version of grip string
-#	F			- number of fingers
-#	gpc			- grip parameter control char
-#	gnc			- grip name control char
-#	endc		- end char (char 254)
-#	gripParams	- grip keyframes for each finger ({F0 nKFs, {gCnt, fPos}, {gCnt, fPos}}, {F1 nKFs, {gCnt, fPos} ...)
-#	gripName	- name of the grip (not encoded, limited to GRIP_NAME_MAX_LEN)
+# 	V			- version of grip string
+# 	F			- number of fingers
+# 	gpc			- grip parameter control char
+# 	gripParams	- grip keyframes for each finger ({F0_nKFs, {gCnt, fPos}, {gCnt, fPos}}, {F1_nKFs, {gCnt, fPos} ...)
+# 	gnc			- grip name control char
+# 	gripName	- name of the grip (not encoded, limited to GRIP_NAME_MAX_LEN)
+# 	endc		- end char (char 254)
 #
-#	The grip values are encoded from uint8_t vals to ASCII (and exteneded ASCII) chars
-#	which have been tested to be printable over common serial terminals.
-#	The ASCII set is split into 2 blocks (33 - 126, 161 - 255) of printable chars, and
-#	are used to represent either a decimal value (33 = 0, 34 = 1 etc) or a control
-#	char (255 = empty value, 254 = endc etc).
-##
+# 	The grip values are encoded from uint8_t vals to ASCII (and exteneded ASCII) chars
+# 	which have been tested to be printable over common serial terminals.
+# 	The ASCII set is split into 2 blocks (33 - 126, 161 - 255) of printable chars, and
+# 	are used to represent either a decimal value (33 = 0, 34 = 1 etc) or a control
+# 	char (255 = empty value, 254 = endc etc).
+# #
 
 # VERSION
 GRIP_STRING_VER = 0
@@ -99,14 +100,6 @@ class GRIP:
         self.printDetails()     # print grip details
         return ""               # return empty string as the above prints the grip details
 
-    # def setNumFingers(self, nF):
-    #     global NUM_FINGERS
-    #     NUM_FINGERS = nF
-    #
-    # def setNumKeyframes(self, nK):
-    #     global GRIP_N_KFRAMES
-    #     GRIP_N_KFRAMES = nK
-
     # return the number of active keyframes
     def numKeyFrames(self, fNum):
         return self._grip.fFrame[fNum].nKFs
@@ -122,7 +115,7 @@ class GRIP:
         elif (char >= chr(PRINTABLE_CHAR_B2_STRT)) and (char <= chr(PRINTABLE_CHAR_B2_END)):
             return ord(char) - ( ( PRINTABLE_CHAR_B2_STRT - PRINTABLE_CHAR_B1_END ) - 1) - PRINTABLE_CHAR_B1_STRT
 
-        print("Char not valid for decoding to val")
+        print("Char not valid for decoding to val (" + str(ord(char)) + ")")
         # if the char is not within any of the printable blocks, return the 0
         return 0
 
@@ -223,23 +216,6 @@ class GRIP:
     def setUsingString(self, gStr = ""):
         print("setUsingString() str: " + gStr)
 
-        ## print string and decoding
-        # for i in range(0, len(gStr)):
-        #     print("(" + gStr[i] + ") " + str(i) + ": " + str(self._decodeCharToVal(gStr[i])) + "\t", end="")
-        #     if i == 0:
-        #         print("string version", end="")
-        #     elif i == 1:
-        #         print("num fingers", end="")
-        #
-        #     if gStr[i] == GRIP_GRIP_PARAMS_CHAR:
-        #         print("GRIP_GRIP_PARAMS_CHAR", end="")
-        #     if gStr[i] == GRIP_END_CHAR:
-        #         print("GRIP_END_CHAR", end="")
-        #     if gStr[i] == GRIP_EMPTY_CHAR:
-        #         print("GRIP_EMPTY_CHAR", end="")
-        #     print("")
-
-
         # check the grip string version char to see if the string is compatible
         if self._decodeCharToVal(gStr[GRIP_VER_LOC]) != GRIP_STRING_VER:
             print("Grip string version incompatible.")
@@ -259,7 +235,7 @@ class GRIP:
         # if the grip params opening char is present, decode string and store values
         if gripParams:
             # TODO add check to make sure closing char is at the expected loc
-            # move to first grip param (F0 nKF)
+            # move to first grip param after grip param opening char (F0 nKF)
             nKFLoc = gripParams + 1
             # count though all fingers
             for f in range(0, NUM_FINGERS):
@@ -284,6 +260,34 @@ class GRIP:
             self._name = self._name[0:min(len(self._name), GRIP_NAME_MAX_LEN)]  # limit name length
             self._name = self._name.replace('_', ' ')                           # replace underscore with a space char
 
+    # clear the current grip
+    def clear(self):
+        self.setName("")
+
+        for f in range(0, NUM_FINGERS):
+            self._grip.fFrame[f].nKFs = 0
+
+            for k in range(0, GRIP_N_KFRAMES):
+                self._grip.fFrame[f].keyFrame[k].gCnt = GRIP_EMPTY_KFRAME_VAL
+                self._grip.fFrame[f].keyFrame[k].fPos = GRIP_EMPTY_KFRAME_VAL
+
+    # set the keyframes/positions of all fingers or of a specific finger
+    def setFingerPositions(self, fPositions, fNum = None):
+        # # if all the positions are zero, then the array may be empty/incorrect
+        # if fPositions.all() == 0:
+        #     print("ERROR. positions not compatible")
+        #     print(fPositions)
+        #     return
+
+        for f in range(0, len(fPositions)):
+            self.setIndividualFingerPositions(f, fPositions[f])
+
+    # set the keyframes/positions of all fingers or of a specific finger
+    def setIndividualFingerPositions(self, fNum, fPositions):
+        # set the keyframes/positions of an individual finger
+        for KFn in range(0, len(fPositions)):
+            self.setKeyFrame(KFn, fNum, fPositions[KFn][0], fPositions[KFn][1])
+
     # set the values of a keyframe. Return false if not a valid keyframe
     def setKeyFrame(self, KFn, fNum, gripCount, fPos):
         # if the keyframe number is not valid, return false
@@ -295,7 +299,7 @@ class GRIP:
             print("Finger number " + str(fNum) + " not valid")
             return 0
 
-        # TODO if KF0, K! and KF3 are used, this breaks the count (as nKF == 2)
+        # TODO if KF0 and KF3 are used, this breaks the count (as nKF == 2)
         # if writing to an empty keyframe, increment number of non-empty keyframes
         if self._grip.fFrame[fNum].keyFrame[KFn].gCnt == GRIP_EMPTY_KFRAME_VAL:
             self._grip.fFrame[fNum].nKFs += 1
@@ -327,84 +331,78 @@ class GRIP:
 
         return 1
 
-    # set the keyframes/positions of all fingers or of a specific finger
-    def setFingerPositions(self, fPositions, fNum = None):
-        # # if all the positions are zero, then the array may be empty/incorrect
-        # if fPositions.all() == 0:
-        #     print("ERROR. positions not compatible")
-        #     print(fPositions)
-        #     return
+    ## DEBUGGING
+    # the passed string will be deconstructed and the grip details and positions will be printed
+    def decodeString_debug(self, gStr =""):
+        print("Grip str: " + gStr)
+        print("Str length: " + str(len(gStr)))
 
-        for f in range(0, len(fPositions)):
-            self.setIndividualFingerPositions(f, fPositions[f])
+        # check the grip string version char to see if the string is compatible
+        if self._decodeCharToVal(gStr[GRIP_VER_LOC]) != GRIP_STRING_VER:
+            print("Grip string version incompatible.")
+            print("Detected: " + str(self._decodeCharToVal(gStr[GRIP_VER_LOC])) + "  Expected: " + str(GRIP_STRING_VER))
+            return 0
 
-    # set the keyframes/positions of all fingers or of a specific finger
-    def setIndividualFingerPositions(self, fNum, fPositions):
-        # set the keyframes/positions of an individual finger
-        for KFn in range(0, len(fPositions)):
-            self.setKeyFrame(KFn, fNum, fPositions[KFn][0], fPositions[KFn][1])
+        print("G Str version: " + str(self._decodeCharToVal(gStr[GRIP_VER_LOC])))
 
 
+        # check the num fingers char to see if the grip string is compatible
+        if self._decodeCharToVal(gStr[GRIP_N_FIN_LOC]) != NUM_FINGERS:
+            print("Number of fingers in grip incompatible")
+            print("Detected: " + gStr[GRIP_N_FIN_LOC] + "  Expected: " + str(NUM_FINGERS))
+            return 0
+        else:
+            print("N Fingers: " + str(self._decodeCharToVal(gStr[GRIP_N_FIN_LOC])))
 
-    # ## DEBUGGING
-    # # the passed string will be deconstructed and the grip details and positions will be printed
-    # def printGripDetails_fromString(self, gStr =""):
-    #     print("Grip str: " + gStr)
-    #     print("length: " + str(len(gStr)))
-    #
-    #     # check the grip string version char to see if the string is compatible
-    #     if self._decodeCharToVal(gStr[GRIP_VER_LOC]) != GRIP_STRING_VER:
-    #         print("Grip string version incompatible.")
-    #         print("Detected: " + str(self._decodeCharToVal(gStr[GRIP_VER_LOC])) + "  Expected: " + str(GRIP_STRING_VER))
-    #         return 0
-    #
-    #     # check the num fingers char to see if the grip string is compatible
-    #     if self._decodeCharToVal(gStr[GRIP_N_FIN_LOC]) != NUM_FINGERS:
-    #         print("Number of fingers in grip incompatible")
-    #         print("Detected: " + str(self._decodeCharToVal(gStr[GRIP_N_FIN_LOC])) + "  Expected: " + str(NUM_FINGERS))
-    #         return 0
-    #     else:
-    #         print("N Fingers: " + str(self._decodeCharToVal(gStr[GRIP_N_FIN_LOC])))
-    #
-    #     # check the num keyframes char to see if the grip string is compatible
-    #     if self._decodeCharToVal(gStr[GRIP_N_KFRAMES_LOC]) != GRIP_N_KFRAMES:
-    #         print("Number of key frames in grip incompatible")
-    #         print("Detected: " + str(self._decodeCharToVal(gStr[GRIP_N_KFRAMES_LOC])) + "  Expected: " + str(GRIP_N_KFRAMES))
-    #         return 0
-    #     else:
-    #         print("N KeyFrames: " + str(self._decodeCharToVal(gStr[GRIP_N_KFRAMES_LOC])))
-    #
-    #     # // check the length of the string is long enough
-    #     if len(gStr) < GRIP_END_LOC:
-    #         print("Grip string length is too short")
-    #         print("Detected: " + str(len(gStr)) + "  Expected: " + str(GRIP_END_LOC))
-    #         return 0
-    #
-    #     # // check the end char to see if the grip string is compatible
-    #     if gStr[GRIP_END_LOC] != GRIP_END_CHAR:
-    #         print("End char not detected")
-    #         print("Detected: " + str(self._decodeCharToVal(gStr[GRIP_END_LOC])) + "  Expected: " + GRIP_END_CHAR)
-    #         return 0
-    #
-    #     # display the number of non-empty key frames
-    #     print("Kframes\t", end="")
-    #     for f in range(0,NUM_FINGERS):
-    #         print("F" + str(f) + ": " + str(self.numKeyFrames(f)) + "\t", end="")
-    #     print("")
-    #
-    #     # display all grip key frames. If they are empty keyframe chars, use GRIP_EMPTY_KFRAME_VAL
-    #     for k in range(0, GRIP_N_KFRAMES):
-    #         print("Kf[" + str(k) + "]: ", end="")
-    #         for f in range(0, NUM_FINGERS):
-    #             if gStr[GRIP_PARAMS_LOC + (k * 2)] == GRIP_EMPTY_CHAR:
-    #                 print(str(GRIP_EMPTY_KFRAME_VAL), end="")
-    #             else:
-    #                 print(str(self._decodeCharToVal(gStr[GRIP_PARAMS_LOC + (k * 2)])), end="")
-    #             print(",", end="")
-    #
-    #             if gStr[GRIP_PARAMS_LOC + (k * 2) + 1] == GRIP_EMPTY_CHAR:
-    #                 print(str(GRIP_EMPTY_KFRAME_VAL), end="")
-    #             else:
-    #                 print(str(self._decodeCharToVal(gStr[GRIP_PARAMS_LOC + (k * 2) + 1])), end="")
-    #             print("\t", end="")
-    #         print("")
+
+        # search for grip name opening char
+        gripNamesStrt = gStr.find(GRIP_GR_NAME_CHAR)
+        # if the grip name opening char is present, store name
+        if gripNamesStrt:
+            gripNamesEnd = gStr.find(GRIP_GR_NAME_CHAR, gripNamesStrt + 1)
+            print("Name: " + gStr[gripNamesStrt + 1: gripNamesEnd])
+
+        # search for grip param opening char
+        gripParams = gStr.find(GRIP_GR_PARAMS_CHAR)
+        # if the grip params opening char is present, decode string and store values
+        if gripParams:
+            # TODO add check to make sure closing char is at the expected loc
+            # move to first grip param after grip param opening char (F0 nKF)
+            nKFLoc = []
+            for i in range(0, NUM_FINGERS):
+                nKFLoc.append(0)
+
+            nKFLoc[0] = gripParams + 1
+            maxnKFs = 0
+            print("nKFs:\t", end="")
+            # count though all fingers
+            for f in range(0, NUM_FINGERS):
+                # print finger number and number of keyframes
+                print("F" + str(f) + ": " + str(self._decodeCharToVal(gStr[nKFLoc[f]])) + "\t", end="")
+
+                # calculate the maxnKFs for this grip
+                maxnKFs = max(self._decodeCharToVal(gStr[nKFLoc[f]]), maxnKFs)
+
+                # move to the next nKFLoc
+                if f < NUM_FINGERS - 1:
+                    nKFLoc[f + 1] = nKFLoc[f] + (self._decodeCharToVal(gStr[nKFLoc[f]]) * 2) + 1
+
+            print("")
+
+            # count through all keyframes for this grip
+            for k in range(0, maxnKFs):
+                print("Kf[" + str(k) + "]\t", end="")
+                # count though all fingers
+                for f in range(0, NUM_FINGERS):
+                    if k < self._decodeCharToVal(gStr[nKFLoc[f]]):
+                        print(str(self._decodeCharToVal(gStr[(nKFLoc[f] + 1) + (k * 2)])) + "," + str(self._decodeCharToVal(gStr[(nKFLoc[f] + 2) + (k * 2)])) + "\t", end="")
+
+                        # sort padding
+                        if self._decodeCharToVal(gStr[(nKFLoc[f] + 1) + (k * 2)]) < 10 and self._decodeCharToVal(gStr[(nKFLoc[f] + 2) + (k * 2)]) < 10:
+                            print("\t", end="")
+                    else:
+                        print("\t\t", end="")
+                print("")
+
+        else:
+            print("No grip parameters detected in grip string")
