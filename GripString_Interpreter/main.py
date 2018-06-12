@@ -71,4 +71,13 @@ def decodeString(gStr = ""):
     grip.decodeString_debug(gStr)
 
 
-generateAllGripStrings()
+
+
+
+####################################################################
+#                       MAIN PROGRAM HERE                          #
+####################################################################
+
+
+#generateAllGripStrings()
+decodeString("!%ý#!-§-$!777§§#!§§§#!§§§ýüPinch_FOPüþ")

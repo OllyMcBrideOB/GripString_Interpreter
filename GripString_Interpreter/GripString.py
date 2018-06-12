@@ -378,7 +378,14 @@ class GRIP:
             # count though all fingers
             for f in range(0, NUM_FINGERS):
                 # print finger number and number of keyframes
-                print("F" + str(f) + ": " + str(self._decodeCharToVal(gStr[nKFLoc[f]])) + "\t", end="")
+                print("F" + str(f) + ": " + str(self._decodeCharToVal(gStr[nKFLoc[f]])) , end="")
+
+                # if there are only 2 keyframes, check for singlePos
+                if self._decodeCharToVal(gStr[nKFLoc[f]]) == 2:
+                    if self._decodeCharToVal(gStr[(nKFLoc[f] + 2) + (KF0 * 2)]) == self._decodeCharToVal(gStr[(nKFLoc[f] + 2) + (KF1 * 2)]):
+                        print("*", end="")
+
+                print("\t", end="")
 
                 # calculate the maxnKFs for this grip
                 maxnKFs = max(self._decodeCharToVal(gStr[nKFLoc[f]]), maxnKFs)
