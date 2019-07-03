@@ -1,5 +1,11 @@
 from GripPositions import *
 
+
+## MUST BE ANSI ENCODING
+## MUST BE ANSI ENCODING
+## MUST BE ANSI ENCODING
+## MUST BE ANSI ENCODING
+
 ## GENERATE AND PRINT ONE DEFAULT GRIP STRING
 def generateOneGripString(gripName = ""):
 
@@ -71,7 +77,10 @@ def decodeString(gStr = ""):
     grip.decodeString_debug(gStr)
 
 
-
+## MUST BE ANSI ENCODING
+## MUST BE ANSI ENCODING
+## MUST BE ANSI ENCODING
+## MUST BE ANSI ENCODING
 
 
 ####################################################################
@@ -79,5 +88,5 @@ def decodeString(gStr = ""):
 ####################################################################
 
 
-#generateAllGripStrings()
-decodeString("!%ý#!-§-$!777§§#!§§§#!§§§ýüPinch_FOPüþ")
+# generateAllGripStrings()
+decodeString("!%ý#!+§+$!DDD§§$!DDD§§#!!§§ýüFistüþ")
