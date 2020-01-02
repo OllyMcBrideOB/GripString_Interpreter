@@ -27,7 +27,7 @@ def generateOneGripString(gripName = ""):
     print(grip)
 
 ## GENERATE AND PRINT ALL DEFAULT GRIP STRINGS
-def generateAllGripStrings():
+def generateAllGripStrings(replace_w_hex = False):
     # create a grip instance
     grip = GRIP()
 
@@ -41,10 +41,10 @@ def generateAllGripStrings():
         grip.setName(defaultGripNames[x])
 
         # generate the grip string
-        gStr = grip.getGripStr()
+        gStr = grip.getGripStr(replace_w_hex)
         gStrLen = len(gStr)
         print(gStr, end="")
-        for t in range(0, int((48 - gStrLen)/4)):
+        for t in range(0, int((115 - gStrLen)/4)):
             print("\t", end="")
         print(grip.getName())
 
@@ -88,5 +88,6 @@ def decodeString(gStr = ""):
 ####################################################################
 
 
+generateAllGripStrings(replace_w_hex = True)
 # generateAllGripStrings()
-decodeString("!%ý#!+§+$!DDD§§$!DDD§§#!!§§ýüFistüþ")
+# decodeString("!%ý#!+§+$!DDD§§$!DDD§§#!!§§ýüFistüþ")
