@@ -7,18 +7,18 @@ if NUM_FINGERS == 3:
     defaultGripNames = \
         ["Fist",
          "Hook",
-         "Tripod FOP",
-         "Tripod FCL",
+         "Tripod A",
+         "Tripod B",
          # "zeros"
          ]
 else:
     defaultGripNames = \
         ["Fist",
          "Hook",
-         "Tripod FOP",
-         "Tripod FCL",
-         "Pinch FOP",
-         "Pinch FCL",   
+         "Tripod A",
+         "Tripod B",
+         "Pinch A",
+         "Pinch B",   
          # "zeros"
          ]
 
@@ -43,12 +43,12 @@ def predefinedPos(gripName = ""):
             pos[F1] = [[0, 0],       [100, 100]]
             pos[F2] = [[0, 0],       [100, 100]]
 
-        elif gripName == "tripod fop":
+        elif gripName == "tripod a":
             pos[F0] = [[0, 10],     [100, 10]]
             pos[F1] = [[0, 35],     [35, 35],   [100, 100]]
             pos[F2] = [[0, 100],    [100, 100]]
 
-        elif gripName == "tripod fcl":
+        elif gripName == "tripod b":
             pos[F0] = [[0, 10],     [100, 10]]
             pos[F1] = [[0, 35],     [35, 35],   [100, 100]]
             pos[F2] = [[0, 0],      [100, 0]]
@@ -78,25 +78,25 @@ def predefinedPos(gripName = ""):
             pos[F2] = [[0, 0],      [100, 100]]
             pos[F3] = [[0, 0],      [100, 100]]
 
-        elif gripName == "tripod fop":
+        elif gripName == "tripod a":
             pos[F0] = [[0, 3],      [100, 3]]
             pos[F1] = [[0, 35],     [35, 35],    [100, 100]]
             pos[F2] = [[0, 35],     [35, 35],    [100, 100]]
             pos[F3] = [[0, 100],    [100, 100]]
 
-        elif gripName == "tripod fcl":
+        elif gripName == "tripod b":
             pos[F0] = [[0, 3],      [100, 3]]
             pos[F1] = [[0, 35],     [35, 35],    [100, 100]]
             pos[F2] = [[0, 35],     [35, 35],    [100, 100]]
             pos[F3] = [[0, 0],      [100, 0]]
 
-        elif gripName == "pinch fop":
+        elif gripName == "pinch a":
             pos[F0] = [[0, 12],     [100, 12]]
             pos[F1] = [[0, 22],     [22, 22],    [100, 100]]
             pos[F2] = [[0, 100],    [100, 100]]
             pos[F3] = [[0, 100],    [100, 100]]
 
-        elif gripName == "pinch fcl":
+        elif gripName == "pinch b":
             pos[F0] = [[0, 12],     [100, 12]]
             pos[F1] = [[0, 22],     [22, 22],   [100, 100]]
             pos[F2] = [[0, 0],      [100, 0]]
