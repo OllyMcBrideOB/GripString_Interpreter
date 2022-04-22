@@ -43,11 +43,9 @@ def generateAllGripStrings(replace_w_hex = False):
         # generate the grip string
         gStr = grip.getGripStr(replace_w_hex)
         gStrLen = len(gStr)
-        print(gStr, end="")
-        for t in range(0, int((115 - gStrLen)/4)):
-            print("\t", end="")
-        print(grip.getName())
 
+        print(f"#define DEFAULT_GRIP_{grip.getName().upper():15}{gStr}")
+        
         # print the position values from the recently generated string
         # grip.decodeString_debug(grip.getGripStr())
 
@@ -87,7 +85,7 @@ def decodeString(gStr = ""):
 #                       MAIN PROGRAM HERE                          #
 ####################################################################
 
-
-generateAllGripStrings(replace_w_hex = True)
 # generateAllGripStrings()
+generateAllGripStrings(replace_w_hex = True)
 # decodeString("!%ý#!+§+$!DDD§§$!DDD§§#!!§§ýüFistüþ")
+# decodeString("\x21\x25\xfd\x23\x21\x2b\xa7\x2b\x24\x21\x44\x44\x44\xa7\xa7\x24\x21\x44\x44\x44\xa7\xa7\x23\x21\x21\xa7\xa7\xfd\xfcFist\xfc\xfe")

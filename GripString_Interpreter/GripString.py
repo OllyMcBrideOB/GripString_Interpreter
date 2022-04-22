@@ -30,7 +30,8 @@ GRIP_NAME_MAX_LEN  = 16      # maximum length of the grip name
 GRIP_EMPTY_KFRAME_VAL = 255
 
 # FINGER LABELS
-NUM_FINGERS = 4
+# NUM_FINGERS = 4
+NUM_FINGERS = 3
 F0 = 0
 F1 = 1
 F2 = 2
@@ -125,35 +126,26 @@ class GRIP:
 		return 0
 
 	# convert a value to a grip string char
-	def _decodeValToChar(self, val, replace_w_hex = False):
+	def _decodeValToChar(self, val):
 		# if the value is an GRIP_EMPTY_KFRAME_VAL
 		if val == GRIP_EMPTY_KFRAME_VAL:
-			return GRIP_EMPTY_CHAR
+			return chr(GRIP_EMPTY_CHAR)
 
 		val += PRINTABLE_CHAR_B1_STRT  # offset the value by the char offset of block 1
 
 		# if value is within the first block
 		if (val >= PRINTABLE_CHAR_B1_STRT) and (val <= PRINTABLE_CHAR_B1_END):
-			if replace_w_hex and (val > 127):
-				return "\\x" + str(hex(val)[2:])
-			else:
-				return chr(val)
+			return chr(val)
 
 		val += (PRINTABLE_CHAR_B2_STRT - PRINTABLE_CHAR_B1_END) - 1  # offset the value by gap size between blocks 1 and 2
 
 		# if value is within the second block
 		if (val >= PRINTABLE_CHAR_B2_STRT) and (val <= PRINTABLE_CHAR_B2_END):
-			if replace_w_hex and (val > 127):
-				return "\\x" + str(hex(val)[2:])
-			else:
-				return chr(val)
-
-		print("Val not valid for decoding to char")
-		# if the val is not within any of the printable blocks, return the end char
-		if replace_w_hex and (GRIP_END_INT > 127):
-			return "\\x" + str(hex(GRIP_END_INT)[2:])
+			return chr(val)
 		else:
-			return GRIP_END_CHAR
+			# if the val is not within any of the printable blocks, return the end char
+			print("Val not valid for decoding to char")
+			return chr(GRIP_END_CHAR)
 
 	# set the name of the grip
 	def setName(self, name=""):
@@ -191,55 +183,48 @@ class GRIP:
 					print(str(self._grip.fFrame[f].keyFrame[k].gCnt) + "," + str(self._grip.fFrame[f].keyFrame[k].fPos) + " \t", end="")
 			print("")
 
+	# either return 'c' as a char, or convert it into a hex-string value (e.g. '\x<val>')
+	def _encodeAsHex(self, c, replace_w_hex):
+		if replace_w_hex:
+			return "\\x" + str(hex(ord(c))[2:])
+		else:
+			return str(c)
+
 	# return the current grip params as a grip string
 	def getGripStr(self, replace_w_hex = False):
-		gStr = ""
-		gStr += self._decodeValToChar(GRIP_STRING_VER, replace_w_hex)
-		gStr += self._decodeValToChar(NUM_FINGERS, replace_w_hex)
+		gStr = "\""
 
 		# add opening 'grip params' special char
-		if replace_w_hex and (GRIP_GR_PARAMS_INT > 127):
-			gStr += "\\x" + str(hex(GRIP_GR_PARAMS_INT)[2:])
-		else:
-			gStr += GRIP_GR_PARAMS_CHAR
-		
+		gStr += self._encodeAsHex(self._decodeValToChar(GRIP_STRING_VER), replace_w_hex)
+		gStr += self._encodeAsHex(self._decodeValToChar(NUM_FINGERS), replace_w_hex)
+		gStr += self._encodeAsHex(GRIP_GR_PARAMS_CHAR, replace_w_hex)
+
 		# count through each finger
 		for f in range(0, NUM_FINGERS):
 			# add the number of keyframes to the grip string
-			gStr += self._decodeValToChar(self._grip.fFrame[f].nKFs, replace_w_hex)
+			gStr += self._encodeAsHex(self._decodeValToChar(self._grip.fFrame[f].nKFs), replace_w_hex)
 			# convert all keyframes vals to chars. If they are empty, use empty keyframe char instead
 			for k in range(0, self._grip.fFrame[f].nKFs):
-				gStr += self._decodeValToChar(self._grip.fFrame[f].keyFrame[k].gCnt, replace_w_hex)       # decode grip count to char
-				gStr += self._decodeValToChar(self._grip.fFrame[f].keyFrame[k].fPos, replace_w_hex)       # decode finger pos to char
+				gStr += self._encodeAsHex(self._decodeValToChar(self._grip.fFrame[f].keyFrame[k].gCnt), replace_w_hex)       # decode grip count to char
+				gStr += self._encodeAsHex(self._decodeValToChar(self._grip.fFrame[f].keyFrame[k].fPos), replace_w_hex)       # decode finger pos to char
 		# add closing 'grip params' special char
-		if replace_w_hex and (GRIP_GR_PARAMS_INT > 127):
-			gStr += "\\x" + str(hex(GRIP_GR_PARAMS_INT)[2:])
-		else:
-			gStr += GRIP_GR_PARAMS_CHAR
+		gStr += self._encodeAsHex(GRIP_GR_PARAMS_CHAR, replace_w_hex)
 
 		# if the grip has a name
 		if self._name:
 			self._name = self._name.replace(' ', '_')   # replace space char with an underscore char
 
 			# add opening 'grip name' special char
-			if replace_w_hex and (GRIP_GR_NAME_INT > 127):
-				gStr += "\\x" + str(hex(GRIP_GR_NAME_INT)[2:])
-			else:
-				gStr += GRIP_GR_NAME_CHAR
+			gStr += self._encodeAsHex(GRIP_GR_NAME_CHAR, replace_w_hex)
 				
-			gStr += self._name[0:GRIP_NAME_MAX_LEN]     # do not encode name, but limit length
+			# add the grip name (ensure the name is surrounded by it's own speech marks to prevent it getting absorbed by the previous `\x` str)
+			gStr += "\" \"" + self._name[0:GRIP_NAME_MAX_LEN] + "\" \""     # do not encode name, but limit length
 
 			# add closing 'grip name' special char
-			if replace_w_hex and (GRIP_GR_NAME_INT > 127):
-				gStr += "\\x" + str(hex(GRIP_GR_NAME_INT)[2:])
-			else:
-				gStr += GRIP_GR_NAME_CHAR
+			gStr += self._encodeAsHex(GRIP_GR_NAME_CHAR, replace_w_hex)
 
 		# add the string end char
-		if replace_w_hex and (GRIP_END_INT > 127):
-			gStr += "\\x" + str(hex(GRIP_END_INT)[2:])
-		else:
-			gStr += GRIP_END_CHAR
+		gStr += self._encodeAsHex(GRIP_END_CHAR, replace_w_hex) + "\""
 
 		return gStr
 
